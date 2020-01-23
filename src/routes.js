@@ -6,6 +6,8 @@ import './config/StatusBarConfig';
 import {createAppContainer} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
 
+import {colors} from './styles/index';
+
 const Routes = createAppContainer(
   createStackNavigator(
     {
@@ -25,13 +27,13 @@ const Routes = createAppContainer(
     {
       defaultNavigationOptions: {
         headerStyle: {
-          backgroundColor: '#4169E1',
+          backgroundColor: colors.primary,
           elevation: 0,
         },
         headerTintColor: '#FFF',
         headerTitleStyle: {
           fontWeight: 'bold',
-          color: '#ffffff',
+          color: colors.text,
         },
       },
     },

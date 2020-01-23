@@ -1,5 +1,9 @@
 import React, {Component} from 'react';
-import {View, Text, Image, StyleSheet} from 'react-native';
+import {View, Text, Image, YellowBox, StyleSheet} from 'react-native';
+import {colors, fonts, metrics} from '../styles/index';
+
+YellowBox.ignoreWarnings(['Warning: Failed']);
+console.ignoredYellowBox = ['Warning: ReactNative.createElement'];
 
 class ChracterDetails extends Component {
   render() {
@@ -7,12 +11,10 @@ class ChracterDetails extends Component {
     return (
       <View styles={styles.container}>
         <Image source={{uri: params.character.image}} style={styles.image} />
-        <Text style={styles.property}>Specie: {params.character.species}</Text>
-        <Text style={styles.property}>Status: {params.character.status}</Text>
-        <Text style={styles.property}>Gender: {params.character.gender}</Text>
-        <Text style={styles.property}>
-          Origin: {params.character.origin.name}
-        </Text>
+        <Text style={styles.texts}>Specie: {params.character.species}</Text>
+        <Text style={styles.texts}>Status: {params.character.status}</Text>
+        <Text style={styles.texts}>Gender: {params.character.gender}</Text>
+        <Text style={styles.texts}>Origin: {params.character.origin.name}</Text>
       </View>
     );
   }
@@ -25,11 +27,13 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'stretch',
   },
-  property: {
-    fontSize: 20,
-    padding: 10,
+  texts: {
+    fontSize: fonts.regular,
+    padding: metrics.baseMargin,
     fontWeight: 'bold',
+    color: colors.dark,
   },
+
   image: {
     width: '95%',
     height: '50%',

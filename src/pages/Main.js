@@ -7,8 +7,15 @@ import {
   Image,
   ActivityIndicator,
   StyleSheet,
+  Alert,
+  YellowBox,
 } from 'react-native';
+
+YellowBox.ignoreWarnings(['Warning: Failed']);
+console.ignoredYellowBox = ['Warning: ReactNative.createElement'];
+
 import api from '../services/api';
+import {colors, fonts, metrics} from '../styles/index';
 
 export default class Main extends Component {
   state = {
@@ -29,15 +36,24 @@ export default class Main extends Component {
 
     this.setState({loading: true});
 
-    const response = await api.get(`/character/?page=${page}`);
-    const {results, ...resultsInfo} = response.data;
+    try {
+      const response = await api.get(`/character/?page=${page}`);
+      const {results, ...resultsInfo} = response.data;
 
-    this.setState({
-      results: [...this.state.results, ...results],
-      resultsInfo,
-      page,
-      loading: false,
-    });
+      this.setState({
+        results: [...this.state.results, ...results],
+        resultsInfo,
+        page,
+        loading: false,
+      });
+    } catch (err) {
+      Alert.alert(
+        'Connection failed',
+        'Check your network',
+        [{text: 'OK', onPress: () => console.log('OK Pressed')}],
+        {cancelable: false},
+      );
+    }
   };
 
   loadMore = () => {
@@ -71,7 +87,7 @@ export default class Main extends Component {
       return null;
     }
     return (
-      <View style={styles.loading}>
+      <View style={styles.loadPage}>
         <ActivityIndicator />
       </View>
     );
@@ -96,36 +112,39 @@ export default class Main extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#f3f2f2',
+    backgroundColor: colors.backgroundcolor,
   },
-  flatList: {
-    marginBottom: 10,
-  },
+
   list: {
-    paddingHorizontal: 12,
-    marginBottom: 40,
+    paddingHorizontal: metrics.paddingHorizontal,
+    marginBottom: metrics.baseMargin,
   },
 
   item: {
     flex: 1,
-    flexDirection: 'column',
+    flexDirection: 'row',
   },
 
   listItem: {
-    backgroundColor: '#99ccff',
-    marginTop: 10,
+    backgroundColor: colors.backgroundcolor,
   },
+
   image: {
-    width: '50%',
-    height: 100,
-    margin: 8,
-    borderRadius: 7,
+    width: '20%',
+    height: 50,
+    marginTop: metrics.baseMargin,
+    marginLeft: metrics.baseMargin,
+    borderRadius: metrics.baseRadius,
   },
+
   name: {
-    width: '50%',
     textAlignVertical: 'center',
-    marginLeft: 10,
-    marginBottom: 10,
     color: '#000',
+    fontSize: fonts.big,
+    marginLeft: metrics.baseMargin,
+  },
+
+  loadPage: {
+    color: colors.dark,
   },
 });

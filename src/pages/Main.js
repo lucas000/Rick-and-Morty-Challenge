@@ -10,6 +10,10 @@ import {
   Alert,
   YellowBox,
 } from 'react-native';
+import {
+  listenOrientationChange as loc,
+  removeOrientationListener as rol,
+} from 'react-native-responsive-screen';
 
 YellowBox.ignoreWarnings(['Warning: Failed']);
 console.ignoredYellowBox = ['Warning: ReactNative.createElement'];
@@ -26,7 +30,12 @@ export default class Main extends Component {
   };
 
   componentDidMount() {
+    loc(this);
     this.loadCharacters();
+  }
+
+  componentWillUnMount() {
+    rol();
   }
 
   loadCharacters = async (page = 1) => {

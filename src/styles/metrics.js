@@ -1,15 +1,18 @@
-import {Dimensions, Platform} from 'react-native';
+import {Platform} from 'react-native';
 
-const {width, height} = Dimensions.get('window');
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 
 const metrics = {
-  smallMargin: 5,
-  baseMargin: 10,
-  doubleBaseMargin: 20,
-  screenWidth: width < height ? width : height,
-  screenHeight: width < height ? height : width,
+  smallMargin: wp('3%'),
+  baseMargin: wp('3%'),
+  doubleBaseMargin: wp('15%'),
+  screenWidth: wp < hp ? wp : hp,
+  screenHeight: wp < hp ? hp : wp,
   statusBarHeight: Platform.OS === 'ios' ? 20 : 0,
-  baseRadius: 3,
+  baseRadius: wp('1%'),
 };
 
 export default metrics;

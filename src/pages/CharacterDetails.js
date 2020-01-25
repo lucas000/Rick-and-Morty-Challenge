@@ -1,12 +1,5 @@
 import React, {Component} from 'react';
-import {
-  View,
-  Text,
-  Image,
-  YellowBox,
-  ScrollView,
-  StyleSheet,
-} from 'react-native';
+import {View, Text, Image, YellowBox, StyleSheet} from 'react-native';
 import {colors, fonts, metrics} from '../styles/index';
 import {
   listenOrientationChange as loc,
@@ -45,6 +38,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'row',
+    backgroundColor: colors.backgroundcolor,
   },
   texts: {
     fontSize: fonts.big,
@@ -57,6 +51,7 @@ const styles = StyleSheet.create({
   imageContainer: {
     flex: 1,
     justifyContent: 'center',
+    backgroundColor: colors.backgroundcolor,
     alignItems: 'center',
   },
 

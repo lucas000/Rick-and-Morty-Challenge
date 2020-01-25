@@ -127,6 +127,7 @@ const styles = StyleSheet.create({
   list: {
     paddingHorizontal: metrics.paddingHorizontal,
     marginBottom: metrics.baseMargin,
+    backgroundColor: colors.backgroundcolor,
   },
 
   item: {
@@ -151,6 +152,7 @@ const styles = StyleSheet.create({
     color: '#000',
     fontSize: fonts.big,
     marginLeft: metrics.baseMargin,
+    backgroundColor: colors.backgroundcolor,
   },
 
   loadPage: {

@@ -16,7 +16,7 @@ This challenge was proposed by the team at Stefanini IT Solutions.
 
 If you want to test the App in the Production mode, the installers are listed below:
 
-[Android .apk installer](Link drive)
+[Android .apk installer](https://drive.google.com/drive/folders/1oDWdetwElFw1UW9UrUA840zXqC-iVT-W?usp=sharing)
 
 iOS .ipa installer: Soon!
 
